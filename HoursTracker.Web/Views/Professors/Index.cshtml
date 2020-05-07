@@ -1,0 +1,112 @@
+﻿@model IEnumerable<HoursTracker.Web.Models.ProfessorViewModel>
+
+
+@{
+    ViewData["Title"] = "Maestros";
+} 
+
+@section Scripts {
+    <script>
+        $(function () {
+
+            $(".delete").click(function () {
+                bootbox.confirm("Are you sure?", function () { })
+            });
+
+            $('#professorsTable').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    {
+                        text: 'New',
+                        className: 'btn btn-primary waves-effect',
+                        action: function () {
+                            window.location.href = "@Url.Action("Create", "Professors")";
+                        }
+                    }
+                ]
+            })
+        });
+
+    </script>
+}
+
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>
+                    Maestros
+                </h2>
+            </div>
+            <div class="body">
+                <div class="table-responsive">
+
+                    <table id="professorsTable" class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Apellido</th>
+                                <th>Carrera</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var professor in Model)
+                            {
+                                <tr>
+                                    <td>@professor.Name</td>
+                                    <td>@professor.LastName</td>
+                                    <td>@professor.Career</td>
+                                    <td>
+                                        <div class="text-center">
+                                            <i class="fas fa-edit"></i>
+                                            <i class="fas fa-trash-alt delete"></i>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+
+                            @*<tr>
+            <td>Elvin</td>
+            <td>Derás</td>
+            <td>Sistemas</td>
+            <td>
+                <div class="text-center">
+                    <i class="fas fa-edit"></i>
+                    <i class="fas fa-trash-alt delete"></i>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>Tiger</td>
+            <td>Nixon</td>
+            <td>System Architect</td>
+            <td>
+                <div class="text-center">
+                    <i class="fas fa-edit"></i>
+                    <i class="fas fa-trash-alt delete"></i>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>Garrett</td>
+            <td>Winters</td>
+            <td>Accountant</td>
+            <td>
+                <div class="text-center">
+                    <i class="fas fa-edit"></i>
+                    <i class="fas fa-trash-alt delete"></i>
+                </div>
+            </td>
+        </tr>*@
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+
